@@ -10,19 +10,20 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
-import jiglionero.dogfoodtestapp.ui.view.BreedView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(onNavigateToBreedImages: (String, String?) -> Unit) {
     val viewModel = hiltViewModel<MainScreenViewModel>()
-    val breeds = viewModel.getBreeds().collectAsLazyPagingItems()
+    val breeds = viewModel.breedsState.collectAsLazyPagingItems()
     val listState = rememberLazyListState()
 
     LazyColumn(state = listState) {
@@ -33,11 +34,16 @@ fun MainScreen(onNavigateToBreedImages: (String, String?) -> Unit) {
                     onClick = {
                         onNavigateToBreedImages(it.name, it.parentName.ifEmpty { null })
                     },
-                    modifier = Modifier.fillMaxWidth().padding(8.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
                 ) {
-                    Text(text = it.getBreedFullName(), modifier = Modifier.padding(8.dp).align(Alignment.CenterHorizontally))
+                    Text(text = it.getBreedFullName(), modifier = Modifier
+                        .padding(8.dp)
+                        .align(Alignment.CenterHorizontally))
                 }
             }
         }
     }
+
 }

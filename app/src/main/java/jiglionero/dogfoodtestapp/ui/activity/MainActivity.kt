@@ -42,7 +42,8 @@ class MainActivity : ComponentActivity() {
                         composable("breeds/images/{name}?parentName={parentName}") {
                             BreedImagesScreen(
                                 it.arguments?.getString("name") ?: "",
-                                it.arguments?.getString("parentName"))
+                                it.arguments?.getString("parentName")
+                            )
                         }
                     }
                 }

@@ -25,7 +25,7 @@ class BreedImagesViewModel @Inject constructor(
         return if (parentName == null) {
             breedPagedRepository.getAllBreedImages(breedName).cachedIn(viewModelScope)
         } else {
-            breedPagedRepository.getAllSubBreedImages(breedName, parentName).cachedIn(viewModelScope)
+            breedPagedRepository.getAllSubBreedImages(parentName, breedName).cachedIn(viewModelScope)
         }
     }
 }
