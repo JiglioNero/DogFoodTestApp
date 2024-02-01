@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" translatable="false">DogFoodTestApp</string>
+    <string name="dogfood_api_base_url" translatable="false">https://dog.ceo/</string>
+    <string name="dogfood_database_name" translatable="false">dogfoodDatabase</string>
+    <string name="no_internet_toast">Not internet connection</string>
+    <string name="fail_toast">Failed response</string>
+
+</resources>
